@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Ingredients
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let ingredient of [].concat(newIngredient).concat(ingredients)">
+    <ion-card-header>
+      {{ ingredient.name || "New Ingredient" }}
+    </ion-card-header>
+    <ion-card-content padding>
+      <form (ngSubmit)="saveIngredient(ingredient)">
+        <ion-item>
+          <ion-label>Name</ion-label>
+          <ion-input type="text" [(ngModel)]="ingredient.name" name="name" required="true"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Serving Size</ion-label>
+          <ion-input type="number" [(ngModel)]="ingredient.servingSize" name="servingSize"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Serving Unit</ion-label>
+          <ion-select [(ngModel)]="ingredient.servingUnit" name="servingUnit">
+            <ion-option value="each">Each</ion-option>
+            <ion-option value="gram">Gram</ion-option>
+            <ion-option value="ounce">Ounces</ion-option>
+            <ion-option value="pound">Pounds</ion-option>
+            <ion-option value="tablespoon">Tablespoon</ion-option>
+            <ion-option value="teaspoon">Teaspoon</ion-option>
+            <ion-option value="cup">Cup</ion-option>
+            <ion-option value="fluid ounce">Fluid Ounces</ion-option>
+            <ion-option value="milliliter">Milliliters</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Container Cost</ion-label>
+          <ion-input type="text" [(ngModel)]="ingredient.containerCost" name="containerCost"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Servings Per Container</ion-label>
+          <ion-input type="number" [(ngModel)]="ingredient.servingsPerContainer" name="servingsPerContainer"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Calories Per Serving</ion-label>
+          <ion-input type="number" [(ngModel)]="ingredient.calories" name="calories"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Source URL</ion-label>
+          <ion-input type="text" [(ngModel)]="ingredient.sourceUrl" name="sourceUrl"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tags, separated by commas</ion-label>
+          <ion-input type="text" [(ngModel)]="ingredient.tags" name="tags"></ion-input>
+        </ion-item>
+        <button ion-button type="submit">Save</button>
+        <button ion-button color="danger" outline *ngIf="newIngredient.name !== undefined" (click)="deleteIngredient(ingredient)">Delete</button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

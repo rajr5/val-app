@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ recipe.name }}</ion-title>
+    <ion-buttons end *ngIf="auth.isAuthenticated()">
+      <button ion-button outline item-end icon-left (click)='edit()'>
+        <ion-icon name="md-create"></ion-icon>
+        Edit
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-6>
+        <recipe recipe="recipe"></recipe>
+        <!-- <ion-card>
+          <ion-card-header>
+            <h1>Ingredients</h1>
+          </ion-card-header>
+          <ion-list>
+            <button ion-item *ngFor='let ingredient of recipe.ingredients.split("\n"); let i = index' (click)='showChoosePage(ingredient)'>
+              <ion-icon *ngIf='recipe.ingredientMatches[i]' name='checkmark' color='secondary' item-left></ion-icon>
+              <ion-icon *ngIf='!recipe.ingredientMatches[i]' name='alert' color='danger' item-left></ion-icon>
+              <h2>{{ingredient}}</h2>
+              <h3 *ngIf='recipe.ingredientMatches[i]'>{{getMatchLine(i)}}</h3>
+            </button>
+          </ion-list>
+          <button *ngIf="auth.isAuthenticated()" ion-button (click)="fixMatches()">Fix matches</button>
+        </ion-card>
+      </ion-col>
+      <ion-col col-12 col-md-6>
+        <ion-card>
+          <ion-card-header>
+            <h1>Instructions</h1>
+          </ion-card-header>
+          <ion-card-content padded>
+            <p *ngFor='let instruction of recipe.instructions.split("\n")'>{{instruction}}</p>
+          </ion-card-content>
+        </ion-card> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

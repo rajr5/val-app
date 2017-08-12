@@ -1,0 +1,21 @@
+page-alarm {
+  .alarm {
+    background-color: black;
+    color: #555;
+    position: relative;
+    height: 100%;
+    font-size: 200%;
+  }
+
+	.clock-container {
+    margin-top: 20%;
+		width: 100%;
+		text-align: center;
+	}
+
+	 .fullscreen-button {
+     position: absolute;
+     right: 20px;
+     top: 5px;
+   }
+}

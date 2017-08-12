@@ -1,0 +1,54 @@
+<!--
+  Generated template for the Mirror page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>mirror</ion-title>
+    <button ion-button class='fullscreen-button' (click)='tappedFullscreen();'>fullscreen</button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content (click)="clickedContent()">
+  <ion-grid class='mirror'>
+    <ion-row class='top'>
+      <ion-col width-50 class='datetime'>
+				<clock></clock>
+	      <div class='quote'>{{ apiService.quote }}</div>
+      </ion-col>
+      <ion-col class='right forecast' width-50>
+        <div class='today-weather'>
+          <ion-icon class='symbol' name='{{ apiService.forecast?.currently.getIcon() }}'></ion-icon>
+          <span class='temperature'>{{ apiService.forecast?.currently.temperature | number:'1.0-0' }}°F</span>
+        </div>
+	      <div class='today-summary'>{{ apiService.forecast?.currently.summary }}</div>
+        <div class='daily' *ngFor='let day of apiService.forecast?.daily; let i=index' >
+          <div *ngIf='i<5'>
+            <span class='day'>{{ day.day | date:'EEE' }}</span>
+            <ion-icon class='symbol' name='{{ day.getIcon() }}'></ion-icon>
+            <span class='high'>{{ day.high | number:'1.0-0' }}</span> /
+            <span class='low'>{{ day.low | number:'1.0-0' }}°F</span>
+          </div>
+        </div>
+      	<div class='weekly-summary'>This week: {{ apiService.forecast?.dailySummary }}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class='bottom'>
+      <ion-col width-50>
+        <div class='cta' *ngFor='let dest of ctaService.arrivalArray'>
+          <div class='{{ dest[0].color }} dest'><span class="destName">{{ dest[0].terminalDestinationName }}:</span>
+            <div class='arrival' *ngFor='let arrival of dest; let i = index; let last = last'>{{ arrival.arrivalTime | arrivalTime }}<span *ngIf="!last">, </span></div>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col class='right' width-50>
+        <!--        <calendar-events></calendar-events>-->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

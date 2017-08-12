@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ originalText }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="!choices || choices.length === 0">
+    <h3>No matching ingredients..</h3>
+    <p>Please add ingredients and then match them here</p>
+    <button ion-button (click)="addIngredient()">Add Ingrdient</button>
+  </div>
+  <ion-list>
+    <button ion-item *ngFor="let choice of choices" (click)="choose(choice)">
+      <h2>{{ choice.ingredient.name }}</h2>
+      <p>{{ choice.ingredient.servingSize }} {{ choice.ingredient.servingUnit }} | ${{ choice.ingredient.containerCost / choice.ingredient.servingsPerContainer | number:'1.2-2' }}, {{ calories }} cals per serving</p>
+      <p>Tags: {{ choice.ingredient.tags }}<p>
+    </button>
+  </ion-list>
+</ion-content>

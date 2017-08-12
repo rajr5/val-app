@@ -1,0 +1,22 @@
+machine:
+  node:
+    version: 8.2.0
+
+dependencies:
+  override:
+    - npm install -g yarn
+    - yarn global add typescript ionic ionic-cli angular-cli karma cordova
+    - yarn install
+  cache_directories:
+    - ~/.cache/yarn
+
+test:
+  override:
+    - yarn run ci
+
+deployment:
+  prod:
+    branch: master
+    commands:
+      - ./deploy.sh
+      - "curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"Successfully deployed val-app.\"}' $SLACK_WEBHOOK_URL"

@@ -1,0 +1,121 @@
+ion-card .content {
+  padding: 0 0 20px 0;
+  position: relative
+}
+
+.image-container {
+  position: relative;
+
+  .banner-image {
+    position:relative;
+  }
+
+  h1 {
+    position: absolute;
+    text-align: center;
+    bottom: 30px;
+    width: 100%;
+    text-transform: uppercase;
+    z-index: 999;
+    color: #eee;
+  }
+
+  .drop-shadow {
+    font-weight: bold;
+    text-shadow: 0 1px 0 black;
+  }
+
+  .translucent-background {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2px 8px;
+  }
+}
+
+.padded {
+  padding: 5px 10px;
+}
+
+.description {
+  p {
+    text-align: center;
+    font-size: 125%;
+  }
+  padding: 10px;
+}
+
+.info-bar {
+  width: 100%;
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: row;
+  font-size: 120%;
+  padding: 10px;
+  background-color: #ececec;
+
+  .info-item {
+    display: block;
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.ingredients,
+.instructions {
+  .title {
+    text-transform: uppercase;
+    padding: 5px 10px;
+    // border: 1px solid #6e6e6e;
+    margin-top: 10px;
+    font-size: 125%;
+  }
+
+  .list {
+    padding: 0 10px;
+  }
+}
+
+.ingredients {
+  .name {
+    padding-bottom: 2px;
+  }
+
+  .match {
+    color: #3e3e3e;
+    font-size: 85%;
+  }
+
+  .no-match {
+    color: red;
+  }
+}
+
+.instructions {
+  .list {
+    // Match buttons in ingredients
+    padding-left:26px;
+    padding-right: 0px;
+
+    p {
+      padding: 4px 0;
+    }
+  }
+}
+
+.edit {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
+
+// .accordion .list {
+//   padding-top: 0;
+//   padding-bottom: 0;
+//   transition: 0.09s all linear;
+// }
+// .accordion .list.accordionHide {
+//   display: none;
+//   line-height: 0px;
+//   transition: 0.09s all linear;
+// }

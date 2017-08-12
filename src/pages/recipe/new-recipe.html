@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      New Recipe
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button outline item-end icon-left type="submit" (click)="saveRecipe()">
+        Save
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form>
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="newRecipe.name" name="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Servings</ion-label>
+      <ion-input type="number" [(ngModel)]="newRecipe.servings" name="servings"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea [(ngModel)]="newRecipe.description" name="description" rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ingredients</ion-label>
+      <ion-textarea [(ngModel)]="newRecipe.ingredients" name="ingredients" rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Instructions</ion-label>
+      <ion-textarea [(ngModel)]="newRecipe.instructions" name="instructions" rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Image URL</ion-label>
+      <ion-input type="text" [(ngModel)]="newRecipe.imageUrl" name="imageUrl"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Source URL</ion-label>
+      <ion-input type="text" [(ngModel)]="newRecipe.sourceUrl" name="sourceUrl"></ion-input>
+    </ion-item>
+    <button ion-button color="danger" outline *ngIf="newRecipe.id !== undefined" (click)="deleteRecipe()">Delete</button>
+  </form>
+</ion-content>

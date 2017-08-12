@@ -1,0 +1,49 @@
+<ion-card>
+  <div class="content">
+    <div class="image-container">
+      <img class="banner-image" *ngIf="recipe.imageUrl" src="{{recipe.imageUrl}}" />
+      <h1 class="padded translucent-background">{{recipe.name}}</h1>
+    </div>
+    <div class="description padded">
+      <p>{{ recipe.description }}</p>
+    </div>
+    <div class="info-bar">
+      <span class="info-item">{{ recipe.caloriesPerServing }} cals</span>
+      <span class="info-item">${{ recipe.costPerServing | number:'1.2-2' }}</span>
+      <span class="info-item">
+        {{ recipe.servings }}
+        <ion-icon ios="md-person" md="md-person" *ngIf="recipe.servings == 1"></ion-icon>
+        <ion-icon ios="md-people" md="md-people" *ngIf="recipe.servings > 1"></ion-icon>
+      </span>
+    </div>
+
+    <div class="accordion ingredients">
+      <div class="title" (click)="this.toggleShow('ingredients')">
+          Ingredients
+          <ion-icon *ngIf="showIngredientsState === 'hidden'" ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+          <ion-icon *ngIf="showIngredientsState === 'shown'" ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+      </div>
+      <div class="list" [@accordion]="showIngredientsState">
+        <button ion-item *ngFor='let ingredient of recipe.ingredients.split("\n"); let i = index' (click)='showChoosePage(ingredient)'>
+          <h2 class="name">{{ingredient}}</h2>
+          <h3 class="match" *ngIf='recipe.ingredientMatches[i]'>{{getMatchLine(i)}}</h3>
+          <h3 class="no-match" *ngIf='!recipe.ingredientMatches[i]'>No ingredient match..</h3>
+        </button>
+      </div>
+    </div>
+    <div class="accordion instructions">
+      <div class="title" (click)="this.toggleShow('instructions')">
+
+        Steps
+        <ion-icon *ngIf="showInstructionsState === 'hidden'" ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+        <ion-icon *ngIf="showInstructionsState === 'shown'" ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
+      </div>
+      <div class="list" [@accordion]="showInstructionsState">
+        <p *ngFor='let instruction of recipe.instructions.split("\n")'>{{instruction}}</p>
+      </div>
+    </div>
+    <button ion-button class="edit" (click)='edit()'>
+      <ion-icon name="md-create"></ion-icon>
+    </button>
+  </div>
+  </ion-card>

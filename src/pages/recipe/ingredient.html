@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ ingredient.name }}</ion-title>
+    <ion-buttons end *ngIf="auth.isAuthenticated()">
+      <button ion-button outline item-end icon-left (click)='edit()'>
+        <ion-icon name="md-create"></ion-icon>
+        Edit
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>{{ingredient.name}}</h1>
+  <h2>Serving size: {{ingredient.servingSize}} {{ingredient.servingUnit }}</h2>
+  <h2>${{ingredient.containerCost / ingredient.servingsPerContainer | number:'1.2-2'}} / {{ingredient.calories}}cals per serving</h2>
+  <p><a href="{{ingredient.sourceUrl}}">{{ingredient.sourceUrl}}</a></p>
+</ion-content>
