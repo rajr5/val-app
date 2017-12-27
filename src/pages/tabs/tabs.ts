@@ -1,15 +1,20 @@
 import { Component } from "@angular/core";
+import { IonicPage } from 'ionic-angular';
 
 import { AppSettings } from "../../config";
 import { AlarmPage } from "../alarm/alarm";
 import { MirrorPage } from "../mirror/mirror";
 import { ProfilePage } from "../profile/profile";
-import { RecipesPage } from "../recipe/recipes";
+// import { RecipeHomePage } from "../recipe-home/recipe-home";
 
 class TabConfig {
   constructor(public page: any, public title: string, public icon: string) {}
 }
 
+@IonicPage({
+  // Hack to make navigating to urls work....... https://github.com/ionic-team/ionic/issues/12304
+  segment: 't',
+})
 @Component({
   templateUrl: "tabs.html"
 })
@@ -24,9 +29,10 @@ export class TabsPage {
   tabs: TabConfig[] = [];
 
   constructor() {
+    console.log("TABS", AppSettings)
     let index = 1;
     if (AppSettings.ENABLE_RECIPE) {
-      this.tabs.push(new TabConfig(RecipesPage, "Recipes", "nutrition"));
+      this.tabs.push(new TabConfig("RecipeHomePage", "Food", "nutrition"));
       index++;
     }
     if (AppSettings.ENABLE_MIRROR) {

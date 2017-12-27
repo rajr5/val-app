@@ -1,5 +1,8 @@
 {
-  "name": "veronica",
-  "app_id": "93275827",
-  "type": "ionic-angular"
+  "name": "val",
+  "app_id": "e68df418",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

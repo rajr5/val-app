@@ -15,6 +15,48 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-ion-content {
-  background-color: #e3e3e3
+ion-content,
+.content-md,
+.content-ios {
+  background-color: color($colors, light, base);
+}
+
+.tabs-md .tabbar,
+.tabs-ios .tabbar {
+  background-color: color($colors, light, base);
+}
+
+.toolbar-md-light .toolbar-background-md {
+  background-color: color($colors, light, base);
+}
+
+.toolbar-md-light .bar-button-clear-md,
+.toolbar-md-light .bar-button-default-md,
+.toolbar-md-light .bar-button-outline-md,
+.toolbar-md-light .toolbar-title-md {
+  color: color($colors, primary, base);
+}
+
+.header-md::after {
+  background-image: none;
+}
+
+.logo {
+  font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.title {
+  font-family: 'Titillium';
+}
+
+.tagline {
+  font-family: 'Noto Serif', serif;
+}
+
+h1, h2 {
+  font-family: 'Montserrat Alternates';
+}
+
+body {
+  font-family: 'Titillium';
 }

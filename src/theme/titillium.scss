@@ -1,0 +1,18 @@
+// Titillium Font
+// Google
+// Apache License, version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0.html
+
+@font-face {
+  font-family: "Titillium";
+  font-style: normal;
+  font-weight: 400;
+  src: local("TitilliumWeb"), local("TitilliumWeb-Regular"), url("#{$font-path}/TitilliumWeb-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Titillium";
+  font-style: normal;
+  font-weight: 700;
+  src: local("TitilliumWeb"), local("TitilliumWeb-Bold"), url("#{$font-path}/TitilliumWeb-Bold.ttf") format("truetype");
+}

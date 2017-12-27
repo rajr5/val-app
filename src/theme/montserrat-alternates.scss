@@ -1,0 +1,11 @@
+// Montserrat Alternates Font
+// Google
+// Apache License, version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0.html
+
+@font-face {
+  font-family: "Montserrat Alternates";
+  font-style: normal;
+  font-weight: 700;
+  src: local("MontserratAlternates"), local("MontserratAlternates-Bold"), url("#{$font-path}/MontserratAlternates-Bold.ttf") format("truetype");
+}

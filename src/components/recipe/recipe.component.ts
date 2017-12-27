@@ -6,8 +6,8 @@ import { NavController } from "ionic-angular";
 import { Recipe } from "../../models/recipe.model";
 import { ChooseIngredientPage } from "../../pages/recipe/choose-ingredient";
 import { NewRecipePage } from "../../pages/recipe/new-recipe";
-import { AuthProvider } from "../../providers/auth/auth";
-import { RecipeProvider } from "../../providers/recipe/recipe";
+import { AuthProvider } from "../../providers/auth.provider";
+import { RecipeProvider } from "../../providers/recipe.provider";
 
 @Component({
   selector: "recipe",
@@ -34,18 +34,15 @@ export class RecipeComponent {
   public showInstructionsState = "hidden";
 
   constructor(private navCtrl: NavController, private recipeService: RecipeProvider, private auth: AuthProvider) {
+    console.log("RECIPE COMP", this.recipe)
   }
 
   edit() {
     this.navCtrl.push(NewRecipePage, { recipe: this.recipe });
   }
 
-  toggleShow(card: string) {
-    if (card === "ingredients") {
-      this.showIngredientsState = this.showIngredientsState === "shown" ? "hidden" : "shown";
-    } else {
-      this.showInstructionsState = this.showInstructionsState === "shown" ? "hidden" : "shown";
-    }
+  goToRecipePage() {
+    this.navCtrl.push('RecipePage', { recipe: this.recipe });
   }
 
   showChoosePage(ingredient: string) {
@@ -59,9 +56,9 @@ export class RecipeComponent {
     if (!match) {
       return "";
     }
-    let ingredient = this.recipeService.ingredients.getValue().find((i) => i.id === match.ingredientId);
+    let ingredient = this.recipeService.ingredients.getValue().find((i) => i._id === match.ingredientId);
     if (!ingredient) {
-      console.warn(`could not find ingredient with id ${match.ingredientId}`);
+      // console.warn(`could not find ingredient with id ${match.ingredientId}`);
       return "";
     }
     let cals = ingredient.calories * match.servings;

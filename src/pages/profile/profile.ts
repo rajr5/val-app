@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { IDetailedError } from "@ionic/cloud-angular";
 import { Platform, ToastController } from "ionic-angular";
 
-import { AuthProvider } from "../../providers/auth/auth";
+import { AuthProvider } from "../../providers/auth.provider";
 import { TrackingService } from "../../services/tracking.service";
 
 @Component({
@@ -26,7 +26,7 @@ export class ProfilePage {
     // console.log("signup", this.details);
     this.auth.signup(this.details.email, this.details.password).then(() => {
     console.debug(`Signing up: ${this.details}`);
-      this.toast("Hello! I'm Veronica. Welcome :)");
+      this.toast("Hello! I'm Val. Welcome :)");
       this.view = "profile";
       this.details = {};
     }, (err: IDetailedError<string[]>) => {

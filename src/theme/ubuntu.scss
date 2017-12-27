@@ -1,0 +1,11 @@
+// Ubuntu Font
+// Google
+// Apache License, version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0.html
+
+@font-face {
+  font-family: "Ubuntu";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu"), local("Ubuntu-Regular"), url("#{$font-path}/Ubuntu-Regular.ttf") format("truetype");
+}

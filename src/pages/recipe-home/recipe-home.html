@@ -1,0 +1,25 @@
+
+<ion-header>
+    <ion-navbar color="light">
+      <ion-title>Recipes</ion-title>
+      <ion-buttons end>
+          <button ion-button (click)="showRecipeForm()" *ngIf="auth.isAuthenticated()">
+            New Recipe
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content padding>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <ion-list class="recipe-cards">
+            <recipe-card *ngFor='let recipe of recipes' [recipe]='recipe'></recipe-card>
+          </ion-list>
+        </ion-col>
+        <ion-col col-12>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

@@ -26,11 +26,23 @@
     </ion-item>
     <ion-item>
       <ion-label>Ingredients</ion-label>
-      <ion-textarea [(ngModel)]="newRecipe.ingredients" name="ingredients" rows="3"></ion-textarea>
+      <ion-textarea [(ngModel)]="newRecipe.ingredientString" name="ingredientString" rows="3"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label>Instructions</ion-label>
-      <ion-textarea [(ngModel)]="newRecipe.instructions" name="instructions" rows="3"></ion-textarea>
+      <ion-textarea [(ngModel)]="newRecipe.instructionString" name="instructionString" rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Prep Time</ion-label>
+      <ion-input type="number" [(ngModel)]="newRecipe.prepTime" name="prepTime"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cook Time</ion-label>
+      <ion-input type="number" [(ngModel)]="newRecipe.cookTime" name="cookTime"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total Time</ion-label>
+      <ion-input type="number" [(ngModel)]="newRecipe.totalTime" name="totalTime"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Image URL</ion-label>
@@ -40,6 +52,6 @@
       <ion-label>Source URL</ion-label>
       <ion-input type="text" [(ngModel)]="newRecipe.sourceUrl" name="sourceUrl"></ion-input>
     </ion-item>
-    <button ion-button color="danger" outline *ngIf="newRecipe.id !== undefined" (click)="deleteRecipe()">Delete</button>
+    <button ion-button color="danger" outline *ngIf="newRecipe._id !== undefined" (click)="deleteRecipe()">Delete</button>
   </form>
 </ion-content>

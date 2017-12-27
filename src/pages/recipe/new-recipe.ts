@@ -3,7 +3,7 @@ import { Response } from "@angular/http";
 import { NavParams, ViewController } from "ionic-angular";
 
 import { Recipe } from "../../models/recipe.model";
-import { RecipeProvider } from "../../providers/recipe/recipe";
+import { RecipeProvider } from "../../providers/recipe.provider";
 
 @Component({
   templateUrl: "new-recipe.html",
@@ -20,23 +20,25 @@ export class NewRecipePage {
   }
 
   public saveRecipe() {
-    // console.log("SAVE RECPIE", this.newRecipe);
-    if (this.newRecipe.ingredients === "") return;
-    if (!this.newRecipe.id) {
-      this.recipeService.saveRecipe(this.newRecipe).subscribe((response: Response) => {this.finish(response); });
+    console.log("SAVE RECPIE", this.newRecipe);
+    if (this.newRecipe.ingredientString === "") return;
+    if (!this.newRecipe._id) {
+      console.log('saving new')
+      this.recipeService.saveRecipe(this.newRecipe).subscribe((response: Response) => this.finish());
     } else {
-      this.recipeService.updateRecipe(this.newRecipe).subscribe((response: Response) => {this.finish(response); });
+      console.log('updating')
+      this.recipeService.updateRecipe(this.newRecipe).subscribe((response: Response) => this.finish());
     }
   }
 
   public deleteRecipe() {
-    this.recipeService.deleteRecipe(this.newRecipe.id).subscribe((response: Response) => {
+    this.recipeService.deleteRecipe(this.newRecipe._id).subscribe(() => {
       // console.log("Deleted", response);
-      this.finish(response);
+      this.finish();
     });
   }
 
-  private finish(response: Response) {
+  private finish() {
     this.newRecipe = new Recipe({});
     this.viewCtrl.dismiss();
   }

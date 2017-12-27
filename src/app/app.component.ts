@@ -1,11 +1,10 @@
 import { Component, ViewChild } from "@angular/core";
-import { Deeplinks } from "@ionic-native/deeplinks";
+// import { Deeplinks } from "@ionic-native/deeplinks";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
 import { Nav, Platform } from "ionic-angular";
 
 import { MirrorPage } from "../pages/mirror/mirror";
-import { TabsPage } from "../pages/tabs/tabs";
 import { DeployService } from "../services/deploy.service";
 import { PushService } from "../services/push.service";
 import { TrackingService } from "../services/tracking.service";
@@ -14,10 +13,10 @@ import { TrackingService } from "../services/tracking.service";
   templateUrl: "app.html",
 })
 export class MyApp {
-  rootPage = TabsPage;
+  rootPage = 'TabsPage';
   @ViewChild(Nav) navChild: Nav;
 
-  constructor(private platform: Platform, private deeplinks: Deeplinks, private statusbar: StatusBar,
+  constructor(private platform: Platform, private statusbar: StatusBar,
               private splashscreen: SplashScreen, private push: PushService, private deploy: DeployService,
               private tracking: TrackingService) {
     this.platform.ready().then(() => {
@@ -27,13 +26,13 @@ export class MyApp {
       this.splashscreen.hide();
       this.tracking.init();
       // Convenience to route with a given nav
-      this.deeplinks.routeWithNavController(this.navChild, {
-        "/mirror": MirrorPage,
-      }).subscribe((match) => {
-        console.debug("Successfully routed", match);
-      }, (nomatch) => {
-        console.warn("Unmatched Route", nomatch);
-      });
+      // this.deeplinks.routeWithNavController(this.navChild, {
+      //   "/mirror": MirrorPage,
+      // }).subscribe((match) => {
+      //   console.debug("Successfully routed", match);
+      // }, (nomatch) => {
+      //   console.warn("Unmatched Route", nomatch);
+      // });
     });
   }
 }

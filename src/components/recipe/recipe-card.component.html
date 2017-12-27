@@ -1,0 +1,74 @@
+<ion-card class="recipe-card" (click)="this.goToRecipePage()">
+  <div class="card-image">
+    <img src="{{this.recipe.getImageUrl()}}" />
+    <div class="translucent-background card-title">{{this.recipe.name}}</div>
+  </div>
+
+  <ion-card-content>
+    <p>{{this.recipe.description}}</p>
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon ios="logo-usd" md="logo-usd"></ion-icon>
+        {{ recipe.costPerServing | number:'1.2-2' }}
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon ios="ios-flame" md="ios-flame"></ion-icon>
+        {{ recipe.caloriesPerServing }} calories
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+      <button ion-button icon-left clear small>
+        <ion-icon ios="md-timer" md="md-timer"></ion-icon>
+        {{recipe.totalTime}} mins
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+<!-- <div class="recipe">
+    <h2 class="name">{{recipe.name}}</h2>
+    <p class="line description">{{recipe.description}}</p>
+
+    <span class="line bold servings">
+      <ion-icon ios="md-person" md="md-person" *ngIf="recipe.servings == 1"></ion-icon>
+      <ion-icon ios="md-people" md="md-people" *ngIf="recipe.servings > 1"></ion-icon>
+      {{recipe.servings}} servings
+    </span>
+    <span class="line bold cost">
+      <ion-icon ios="logo-usd" md="logo-usd"></ion-icon>
+      ${{ recipe.costPerServing | number:'1.2-2' }} per servings
+    </span>
+    <span class="line bold calories">
+      <ion-icon ios="ios-flame" md="ios-flame"></ion-icon>
+      {{ recipe.caloriesPerServing }} cals per serving
+    </span>
+
+    <div class="time">
+      <span class="line prep-time">Prep Time: {{recipe.prepTime}} mins</span>
+      <span class="line cook-time">Cook Time: {{recipe.cookTime}} mins</span>
+      <span class="line total-time">Total Time: {{recipe.totalTime}} mins</span>
+    </div>
+
+    <div class="ingredients">
+      <h3>Ingredients</h3>
+      <div *ngFor='let ingredient of recipe.ingredients; let i = index' (click)='showChoosePage(ingredient)'>
+        <h4 class="name">{{ingredient}}</h4>
+        <span class="line match" *ngIf='recipe.ingredientMatches[i]'>{{getMatchLine(i)}}</span>
+        <span class="line no-match" *ngIf='!recipe.ingredientMatches[i]'>No ingredient match..</span>
+      </div>
+    </div>
+    <div class="instructions">
+      <h3>Steps</h3>
+      <div class="list">
+        <p *ngFor='let instruction of recipe.instructions'>{{instruction}}</p>
+      </div>
+    </div>
+    <button ion-button class="edit" (click)='edit()'>
+      <ion-icon name="md-create"></ion-icon>
+    </button>
+  </div> -->

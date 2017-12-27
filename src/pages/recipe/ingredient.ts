@@ -2,8 +2,8 @@ import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 
 import { Ingredient } from "../../models/recipe.model";
-import { AuthProvider } from "../../providers/auth/auth";
-import { RecipeProvider } from "../../providers/recipe/recipe";
+import { AuthProvider } from "../../providers/auth.provider";
+import { RecipeProvider } from "../../providers/recipe.provider";
 import { NewIngredientPage } from "./new-ingredient";
 
 /*

@@ -12,7 +12,8 @@ import { CloudModule, CloudSettings } from "@ionic/cloud-angular";
 import { IonicApp, IonicErrorHandler, IonicModule } from "ionic-angular";
 import { CalendarComponent } from "../components/calendar";
 import { ClockComponent } from "../components/clock";
-import { RecipeComponent } from "../components/recipe/recipe.component";
+// import { RecipeCardComponent } from "../components/recipe/recipe-card.component";
+// import { RecipeComponent } from "../components/recipe/recipe.component";
 import { extensionSetup } from "../extensions";
 import { AlarmPage } from "../pages/alarm/alarm";
 import { MirrorPage } from "../pages/mirror/mirror";
@@ -21,15 +22,15 @@ import { ChooseIngredientPage } from "../pages/recipe/choose-ingredient";
 import { IngredientPage } from "../pages/recipe/ingredient";
 import { NewIngredientPage } from "../pages/recipe/new-ingredient";
 import { NewRecipePage } from "../pages/recipe/new-recipe";
+import { RecipeHomePage } from "../pages/recipe-home/recipe-home";
 import { RecipePage } from "../pages/recipe/recipe";
-import { RecipesPage } from "../pages/recipe/recipes";
-import { TabsPage } from "../pages/tabs/tabs";
+// import { TabsPage } from "../pages/tabs/tabs";
 import { ArrivalTimePipe } from "../pipes/arrivalTime";
 import { SplitPipe } from "../pipes/split";
-import { AuthProvider } from "../providers/auth/auth";
-import { RecipeProvider } from "../providers/recipe/recipe";
-import { StorageProvider } from "../providers/storage/storage";
-import { TrackingProvider } from "../providers/tracking/tracking";
+import { AuthProvider } from "../providers/auth.provider";
+import { RecipeProvider } from "../providers/recipe.provider";
+import { StorageProvider } from "../providers/storage.provider";
+import { TrackingProvider } from "../providers/tracking.provider";
 import { DeployService } from "../services/deploy.service";
 import { SentryErrorHandler } from "../services/error.service";
 import { PushService } from "../services/push.service";
@@ -48,15 +49,16 @@ const cloudSettings: CloudSettings = {
   declarations: [
     MyApp,
     MirrorPage,
-    TabsPage,
+    // TabsPage,
     ArrivalTimePipe,
     SplitPipe,
     ClockComponent,
     CalendarComponent,
-    RecipeComponent,
+    // RecipeComponent,
+    // RecipeCardComponent,
     AlarmPage,
-    RecipesPage,
-    RecipePage,
+    // RecipeHomePage,
+    // RecipePage,
     IngredientPage,
     NewRecipePage,
     NewIngredientPage,
@@ -64,12 +66,7 @@ const cloudSettings: CloudSettings = {
     ProfilePage,
   ],
   imports: [
-    IonicModule.forRoot(MyApp,
-//      { locationStrategy: 'path' },
-//      { links: [
-//        { component: MirrorPage, name: 'Mirror', segment: 'mirror' },
-//      ] },
-    ),
+    IonicModule.forRoot(MyApp),
     CloudModule.forRoot(cloudSettings),
     BrowserModule,
     HttpModule,
@@ -80,14 +77,14 @@ const cloudSettings: CloudSettings = {
     MyApp,
     MirrorPage,
     AlarmPage,
-    RecipePage,
+    // RecipePage,
     IngredientPage,
-    RecipesPage,
+    // RecipeHomePage,
     NewRecipePage,
     NewIngredientPage,
     ChooseIngredientPage,
     ProfilePage,
-    TabsPage
+    // TabsPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

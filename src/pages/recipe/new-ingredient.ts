@@ -3,7 +3,7 @@ import { Response } from "@angular/http";
 import { NavParams, ToastController, ViewController } from "ionic-angular";
 
 import { Ingredient } from "../../models/recipe.model";
-import { RecipeProvider } from "../../providers/recipe/recipe";
+import { RecipeProvider } from "../../providers/recipe.provider";
 
 @Component({
   templateUrl: "new-ingredient.html",
@@ -17,13 +17,10 @@ export class NewIngredientPage {
   }
 
   public deleteIngredient() {
-    // console.log("deleting ingredient");
-    this.recipeService.deleteIngredient(this.ingredient.id).subscribe((response: Response) =>
-      this.finish(response));
+    this.recipeService.deleteIngredient(this.ingredient._id).subscribe(() => this.finish());
   }
 
-  private finish(response: Response) {
-    // TODO: Update recipes
+  private finish() {
     this.viewCtrl.dismiss();
   }
 
@@ -37,18 +34,11 @@ export class NewIngredientPage {
       this.toast("Ingredient invalid, please try again");
       return;
     }
-    // console.log("saving ingredient", ingredient);
-    // clone
-    let pendingIngredients = [ingredient];
-    for (let i of this.recipeService.ingredients.getValue()) {
-      if (i.id !== ingredient.id) {
-        pendingIngredients.push(i);
-      }
-    }
 
-    this.recipeService.saveIngredients(pendingIngredients).subscribe((value: Response) => {
+    this.recipeService.saveIngredient(ingredient).subscribe(() => {
       this.toast(`Created ${this.ingredient.name}`);
       this.ingredient = new Ingredient({});
+      this.finish();
     });
   }
 

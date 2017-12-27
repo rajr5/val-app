@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { NavController, NavParams, ViewController } from "ionic-angular";
 
-import { Ingredient, Recipe } from "../../models/recipe.model";
-import { RecipeProvider } from "../../providers/recipe/recipe";
+import { Ingredient, Recipe, IngredientMatch } from "../../models/recipe.model";
+import { RecipeProvider } from "../../providers/recipe.provider";
 import { NewIngredientPage } from "./new-ingredient";
 
 /*
@@ -25,26 +25,17 @@ export class ChooseIngredientPage {
     private recipeService: RecipeProvider) {
     this.originalText = params.get("ingredient");
     this.recipe = params.get("recipe");
-    this.ingredientSub = recipeService.ingredients.subscribe((ingredients: Ingredient[]) => {
-      this.ingredientMap = {};
-      for (let ingredient of ingredients) {
-        this.ingredientMap[ingredient.id] = ingredient;
-      }
-      let choices = this.recipeService.matchIngredient(this.originalText);
-      // console.log("choices", choices);
-      this.choices = choices.filter((choice) => choice !== undefined)
-        .map((choice) => {
-          // console.log("choice", choice);
-          return {
-            ingredient: this.ingredientMap[choice.ingredientId],
-            match: choice,
-          };
-        });
+    let index = this.recipe.ingredients.findIndex((i) => i === this.originalText);
+    // TODO this is super fragile. This data structure should be {originalText: [choices]} rather
+    // than [[choices]]
+    this.recipeService.matchIngredients(this.recipe).subscribe((matches: IngredientMatch[]) => {
+      this.choices = matches[index];
     });
   }
 
-  public choose(choice: any) {
-    this.recipeService.saveMatch(this.recipe, this.originalText, choice.match);
+  public choose(choice: IngredientMatch) {
+    console.log('i choose you!', choice)
+    this.recipeService.saveMatch(this.recipe, this.originalText, choice);
     this.viewCtrl.dismiss();
   }
 

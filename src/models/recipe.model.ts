@@ -87,16 +87,23 @@ export interface IngredientMatch {
   originalText: string;
 }
 
+const DEFAULT_IMAGE_URL = "/assets/avotoast.png";
+
 export class Recipe {
+  public _id: string;
   public name: string;
   public description: string;
-  public ingredients: string = "";
-  public instructions: string;
+  public ingredients: string[] = [];
+  public ingredientString: string = "";
+  public instructions: string[] = [];
+  public instructionString: string = "";
   public calories: number;
   public cost: number;
   public servings: number;
+  public prepTime: number;
+  public cookTime: number;
+  public totalTime: number;
   public sourceUrl: string;
-  public id: string;
   public ingredientMatches: IngredientMatch[] = [];
   public imageUrl: string;
 
@@ -106,6 +113,7 @@ export class Recipe {
     }
     return this.cost / this.servings;
   }
+
   get caloriesPerServing(): number {
     if (!this.calories || !this.servings) {
       return undefined;
@@ -114,10 +122,17 @@ export class Recipe {
   }
 
   constructor(jsonData) {
-    for (let key of ["id", "name", "description", "calories", "cost", "ingredients", "instructions",
-         "ingredientMatches", "servings", "imageUrl", "sourceUrl"]) {
+    for (let key of ["_id", "name", "description", "calories", "cost", "ingredients", "instructions",
+         "ingredientMatches", "servings", "prepTime", "cookTime", "totalTime", "imageUrl",
+         "sourceUrl"]) {
       if (jsonData[key]) {
         this[key] = jsonData[key];
+      }
+      if (jsonData.ingredients) {
+        this.ingredientString = jsonData.ingredients.join('\n');
+      }
+      if (jsonData.instructions) {
+        this.instructionString = jsonData.instructions.join('\n');
       }
     }
     // fill in ingredientMatches with undefineds
@@ -129,45 +144,21 @@ export class Recipe {
     }
   }
 
-  addMatch(match: IngredientMatch) {
-    let index = this.findIngredientIndex(match.originalText);
-    if (index === -1) {
-      throw new Error(`Could not find index for match '${match.originalText}'`);
-    }
-    this.ingredientMatches[index] = match;
-  }
-
-  calculateCost(ingredientMap: any) {
-    this.cost = 0.0;
-    for (let match of this.ingredientMatches) {
-      if (!match) continue;
-      let ingredient: Ingredient = ingredientMap[match.ingredientId];
-      this.cost += (match.servings * ingredient.containerCost / ingredient.servingsPerContainer);
-    }
-  }
-
-  calculateCalories(ingredientMap: any) {
-    this.calories = 0.0;
-    for (let match of this.ingredientMatches) {
-      if (!match) continue;
-      let ingredient: Ingredient = ingredientMap[match.ingredientId];
-      // console.log(match, ingredientMap);
-      this.calories += (match.servings * ingredient.calories);
-    }
-    this.calories = Math.floor(this.calories);
-  }
-
   private findIngredientIndex(originalText: string): number {
     return this.splitIngredients().indexOf(originalText);
   }
 
   public splitIngredients(): string[] {
-    return this.ingredients.split("\n");
+    return this.ingredientString.split("\n");
+  }
+
+  public getImageUrl(): string {
+    return this.imageUrl || DEFAULT_IMAGE_URL;
   }
 }
 
 export class Ingredient {
-  public id: string;
+  public _id: string;
   public name: string;
   public servingSize: number;
   public servingUnit: UnitEnum;
@@ -178,13 +169,9 @@ export class Ingredient {
   public tags: string;
 
   constructor(jsonData) {
-    for (let key of ["id", "name", "servingSize", "containerCost", "servingsPerContainer", "calories",
+    for (let key of ["_id", "name", "servingSize", "containerCost", "servingsPerContainer", "calories",
          "sourceUrl", "tags", "servingUnit"]) {
       this[key] = jsonData[key];
-    }
-
-    if (!this.id) {
-      this.id = Math.random().toString(36).substr(2, 10);
     }
   }
 

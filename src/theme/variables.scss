@@ -24,13 +24,16 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #41c13a,
-  secondary:  #3ac1b4,
-  complentary: #84c13a,
-  danger:     #c13a41,
-  light:      #f4f4f4,
-  dark:       #222,
-  brown:    #8B572A,
+  primary:     rgb(86, 214, 18),
+  secondary:   rgb(15, 202, 193),
+  complentary: #8C11A2,
+  danger:      #F64415,
+  light:       #F7F7F6,
+  dark: (
+    base:      #3A4046,
+    contrast:  #1d1e1c
+  ),
+  brown:     #8B572A,
 );
 
 
@@ -78,3 +81,16 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+@import "ubuntu";
+@import "montserrat-alternates";
+@import "titillium";
+// @font-face {
+//   font-family: 'NotoSerif';
+//   src: url("../assets/fonts/NotoSerif-Italic.ttf") format("ttf");
+//   // font-weight: normal;
+//   // font-style: normal;
+//  }
+ $font-family-base: "Titillium";
+ $font-family-ios-base: $font-family-base;
+ $font-family-md-base: $font-family-base;
+ $font-family-wp-base: $font-family-base;

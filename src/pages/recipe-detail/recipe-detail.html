@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ recipe.name }}</ion-title>
+    <ion-buttons end *ngIf="auth.isAuthenticated()">
+      <button ion-button outline item-end icon-left (click)='edit()'>
+        <ion-icon name="md-create"></ion-icon>
+        Edit
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-6>
+        <recipe *ngIf="recipe !== undefined" [recipe]="recipe | async"></recipe>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

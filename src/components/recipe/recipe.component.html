@@ -1,49 +1,40 @@
-<ion-card>
-  <div class="content">
-    <div class="image-container">
-      <img class="banner-image" *ngIf="recipe.imageUrl" src="{{recipe.imageUrl}}" />
-      <h1 class="padded translucent-background">{{recipe.name}}</h1>
-    </div>
-    <div class="description padded">
-      <p>{{ recipe.description }}</p>
-    </div>
-    <div class="info-bar">
-      <span class="info-item">{{ recipe.caloriesPerServing }} cals</span>
-      <span class="info-item">${{ recipe.costPerServing | number:'1.2-2' }}</span>
-      <span class="info-item">
-        {{ recipe.servings }}
-        <ion-icon ios="md-person" md="md-person" *ngIf="recipe.servings == 1"></ion-icon>
-        <ion-icon ios="md-people" md="md-people" *ngIf="recipe.servings > 1"></ion-icon>
-      </span>
+  <div *ngIf="recipe" class="recipe">
+    <h2 class="name">{{recipe.name}}</h2>
+    <img src="{{recipe.getImageUrl()}}" />
+    <p class="line description">{{recipe.description}}</p>
+
+    <span class="line bold servings">
+      <ion-icon ios="md-person" md="md-person" *ngIf="recipe.servings == 1"></ion-icon>
+      <ion-icon ios="md-people" md="md-people" *ngIf="recipe.servings > 1"></ion-icon>
+      {{recipe.servings}} servings
+    </span>
+    <span class="line bold cost">
+      <ion-icon ios="logo-usd" md="logo-usd"></ion-icon>
+      ${{ recipe.costPerServing | number:'1.2-2' }} per servings
+    </span>
+    <span class="line bold calories">
+      <ion-icon ios="ios-flame" md="ios-flame"></ion-icon>
+      {{ recipe.caloriesPerServing }} cals per serving
+    </span>
+
+    <div class="time">
+      <span class="line prep-time">Prep Time: {{recipe.prepTime}} mins</span>
+      <span class="line cook-time">Cook Time: {{recipe.cookTime}} mins</span>
+      <span class="line total-time">Total Time: {{recipe.totalTime}} mins</span>
     </div>
 
-    <div class="accordion ingredients">
-      <div class="title" (click)="this.toggleShow('ingredients')">
-          Ingredients
-          <ion-icon *ngIf="showIngredientsState === 'hidden'" ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
-          <ion-icon *ngIf="showIngredientsState === 'shown'" ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-      </div>
-      <div class="list" [@accordion]="showIngredientsState">
-        <button ion-item *ngFor='let ingredient of recipe.ingredients.split("\n"); let i = index' (click)='showChoosePage(ingredient)'>
-          <h2 class="name">{{ingredient}}</h2>
-          <h3 class="match" *ngIf='recipe.ingredientMatches[i]'>{{getMatchLine(i)}}</h3>
-          <h3 class="no-match" *ngIf='!recipe.ingredientMatches[i]'>No ingredient match..</h3>
-        </button>
+    <div class="ingredients">
+      <h3>Ingredients</h3>
+      <div *ngFor='let ingredient of recipe.ingredients; let i = index' (click)='showChoosePage(ingredient)'>
+        <h4 class="name">{{ingredient}}</h4>
+        <span class="line match" *ngIf='recipe.ingredientMatches[i]'>{{getMatchLine(i)}}</span>
+        <span class="line no-match" *ngIf='!recipe.ingredientMatches[i]'>No ingredient match..</span>
       </div>
     </div>
-    <div class="accordion instructions">
-      <div class="title" (click)="this.toggleShow('instructions')">
-
-        Steps
-        <ion-icon *ngIf="showInstructionsState === 'hidden'" ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
-        <ion-icon *ngIf="showInstructionsState === 'shown'" ios="ios-arrow-down" md="ios-arrow-down"></ion-icon>
-      </div>
-      <div class="list" [@accordion]="showInstructionsState">
-        <p *ngFor='let instruction of recipe.instructions.split("\n")'>{{instruction}}</p>
+    <div class="instructions">
+      <h3>Steps</h3>
+      <div class="list">
+        <p *ngFor='let instruction of recipe.instructions'>{{instruction}}</p>
       </div>
     </div>
-    <button ion-button class="edit" (click)='edit()'>
-      <ion-icon name="md-create"></ion-icon>
-    </button>
   </div>
-  </ion-card>

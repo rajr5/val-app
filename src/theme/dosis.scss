@@ -1,0 +1,34 @@
+// Dosis Font
+// Google
+// Apache License, version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0.html
+
+$dosis-font-path: $font-path !default;
+
+@font-face {
+  font-family: "Dosis";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Dosis"), local("Dosis-ExtraLight"), url("#{$dosis-font-path}/Dosis-ExtraLight.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Dosis";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Dosis"), local("Dosis-Light"), url("#{$dosis-font-path}/Dosis-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Dosis";
+  font-style: normal;
+  font-weight: 500;
+  src: local("Dosis"), local("Dosis-Regular"), url("#{$dosis-font-path}/Dosis-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Dosis";
+  font-style: normal;
+  font-weight: 600;
+  src: local("Dosis"), local("Dosis-Medium"), url("#{$dosis-font-path}/Dosis-Medium.ttf") format("truetype");
+}

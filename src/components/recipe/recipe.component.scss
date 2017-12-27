@@ -1,121 +1,146 @@
-ion-card .content {
+.recipe {
   padding: 0 0 20px 0;
-  position: relative
-}
-
-.image-container {
   position: relative;
+  color: color($colors, dark, base);
+  background: color($colors, light, base);
+  border: none;
 
-  .banner-image {
-    position:relative;
+  .line {
+    width: 100%;
+    display: block;
+
+    ion-icon {
+      width: 14px;
+      margin-right: 6px;
+      text-align: center;
+    }
+  }
+
+  .bold {
+    font-weight: bold;
   }
 
   h1 {
-    position: absolute;
-    text-align: center;
-    bottom: 30px;
-    width: 100%;
-    text-transform: uppercase;
-    z-index: 999;
-    color: #eee;
+    color: color($colors, primary, base);
   }
 
-  .drop-shadow {
+  h3 {
     font-weight: bold;
-    text-shadow: 0 1px 0 black;
   }
 
-  .translucent-background {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 2px 8px;
-  }
-}
+  .image-container {
+    position: relative;
 
-.padded {
-  padding: 5px 10px;
-}
+    .banner-image {
+      position:relative;
+    }
 
-.description {
-  p {
-    text-align: center;
-    font-size: 125%;
-  }
-  padding: 10px;
-}
+    h1 {
+      position: absolute;
+      text-align: center;
+      bottom: 30px;
+      width: 100%;
+      text-transform: uppercase;
+      z-index: 999;
+      color: #eee;
+    }
 
-.info-bar {
-  width: 100%;
-  margin: 5px 0px;
-  display: flex;
-  flex-direction: row;
-  font-size: 120%;
-  padding: 10px;
-  background-color: #ececec;
+    .drop-shadow {
+      font-weight: bold;
+      text-shadow: 0 1px 0 black;
+    }
 
-  .info-item {
-    display: block;
-    flex: 1;
-    text-align: center;
-  }
-}
-
-.ingredients,
-.instructions {
-  .title {
-    text-transform: uppercase;
-    padding: 5px 10px;
-    // border: 1px solid #6e6e6e;
-    margin-top: 10px;
-    font-size: 125%;
-  }
-
-  .list {
-    padding: 0 10px;
-  }
-}
-
-.ingredients {
-  .name {
-    padding-bottom: 2px;
-  }
-
-  .match {
-    color: #3e3e3e;
-    font-size: 85%;
-  }
-
-  .no-match {
-    color: red;
-  }
-}
-
-.instructions {
-  .list {
-    // Match buttons in ingredients
-    padding-left:26px;
-    padding-right: 0px;
-
-    p {
-      padding: 4px 0;
+    .translucent-background {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 2px 8px;
     }
   }
+
+  .padded {
+    padding: 5px 10px;
+  }
+
+  .description {
+    font-size: 125%;
+  }
+
+  .info-bar {
+    width: 100%;
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: row;
+    font-size: 120%;
+    padding: 10px;
+    background-color: #ececec;
+
+    .info-item {
+      display: block;
+      flex: 1;
+      text-align: center;
+    }
+  }
+
+  .ingredients,
+  .instructions {
+    .title {
+      text-transform: uppercase;
+      padding: 5px 10px;
+      // border: 1px solid #6e6e6e;
+      margin-top: 10px;
+      font-size: 125%;
+    }
+
+    .list {
+      padding: 0 10px;
+    }
+  }
+
+  .ingredients {
+    .name {
+      padding-bottom: 0px;
+      margin-bottom: 2px;
+    }
+
+    .match {
+      color: #3e3e3e;
+      font-size: 85%;
+    }
+
+    .no-match {
+      color: red;
+    }
+  }
+
+  .instructions {
+    .list {
+      // Match buttons in ingredients
+      padding-left:26px;
+      padding-right: 0px;
+
+      p {
+        padding: 4px 0;
+      }
+    }
+  }
+
+  .edit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+
+
+  // .accordion .list {
+  //   padding-top: 0;
+  //   padding-bottom: 0;
+  //   transition: 0.09s all linear;
+  // }
+  // .accordion .list.accordionHide {
+  //   display: none;
+  //   line-height: 0px;
+  //   transition: 0.09s all linear;
+  // }
+
 }
 
-.edit {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-
-
-// .accordion .list {
-//   padding-top: 0;
-//   padding-bottom: 0;
-//   transition: 0.09s all linear;
-// }
-// .accordion .list.accordionHide {
-//   display: none;
-//   line-height: 0px;
-//   transition: 0.09s all linear;
-// }
